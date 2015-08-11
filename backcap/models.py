@@ -104,7 +104,13 @@ class Feedback(models.Model):
 
 ## Signal routing
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.comments.signals import comment_was_posted
+try:
+    from django_comments.signals import comment_was_posted
+except ImportError:
+    try:
+        from django.contrib.comments.signals import comment_was_posted
+    except ImportError:
+        raise Exception("Please install django-contrib-comments application")
 from django.dispatch import receiver
 
 import notification.models as notification

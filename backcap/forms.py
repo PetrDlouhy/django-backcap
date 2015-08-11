@@ -34,6 +34,7 @@ class FeedbackNewForm(forms.ModelForm):
 class FeedbackEditForm(forms.ModelForm):
     class Meta:
         model = Feedback
+        fields = "__all__"
 
     duplicate_of = forms.ModelChoiceField(queryset=Feedback.objects.all(),
                                           widget=forms.TextInput,
